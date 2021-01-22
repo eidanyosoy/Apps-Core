@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Title:      PGBlitz (Reference Title File)
-# Author(s):  Admin9705
-# URL:        https://pgblitz.com - http://github.pgblitz.com
+# Title:      radarr 
+# Author(s):  eidanyosoy
+# URL:        https://hub.docker.com/r/hotio/radarr
 # GNU:        General Public License v3.0
 ################################################################################
 ---
@@ -16,7 +16,7 @@
         pgrole: 'radarr'
         intport: '7878'
         extport: '7878'
-        image: 'linuxserver/radarr:nightly'
+        image: 'hotio/radarr:musl'
 
     # CORE (MANDATORY) ############################################################
     - name: 'Including cron job'
