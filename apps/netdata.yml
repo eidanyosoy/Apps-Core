@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Title:      PGBlitz (Reference Title File)
-# Author(s):  Admin9705
+# Title:      Netdata (Cloud update)
+# Author(s):  Admin9705/netdata
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
@@ -25,9 +25,9 @@
     - name: 'Adding Traefik'
       set_fact:
         pg_labels:
+          traefik.frontend.auth.forward.address: '{{gauth}}'
           traefik.enable: 'true'
           traefik.port: '{{intport}}'
-          traefik.frontend.auth.forward.address: '{{gauth}}'
           traefik.frontend.rule: 'Host:{{pgrole}}.{{domain.stdout}}{{tldset}}{{cname}}'
           traefik.frontend.headers.SSLHost: '{{domain.stdout}}'
           traefik.frontend.headers.SSLRedirect: 'true'
@@ -39,19 +39,25 @@
           traefik.frontend.headers.customResponseHeaders: 'X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex'
           traefik.frontend.headers.forceSTSHeader: 'true'
 
-    - name: 'Setting {{pgrole}} Volumes'
+    - name: 'Setting PG Volumes'
       set_fact:
         pg_volumes:
-          - '/sys:/host/sys:ro'
+          - '/opt/appdata/{{pgrole}}/netdatalib:/var/lib/netdata:rw'          
+          - '/opt/appdata/{{pgrole}}/netdatacache:/var/cache/netdata:rw'
+          - '{{path.stdout}}:{{path.stdout}}'
+          - '/etc/passwd:/host/etc/passwd:ro'
+          - '/etc/group:/host/etc/group:ro'
           - '/proc:/host/proc:ro'
+          - '/sys:/host/sys:ro'
+          - '/etc/os-release:/host/etc/os-release:ro'
+          - '/etc/localtime:/etc/localtime:ro'
           - '/var/run/docker.sock:/var/run/docker.sock'
 
-    - name: 'Setting {{pgrole}} ENV'
+    - name: 'Setting PG ENV'
       set_fact:
         pg_env:
           PUID: '1000'
           PGID: '1000'
-          DOCKER_USR: 'root'
 
     # MAIN DEPLOYMENT #############################################################
     - name: 'Deploying {{pgrole}}'
