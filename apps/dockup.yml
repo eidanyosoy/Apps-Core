@@ -1,5 +1,10 @@
 #!/bin/bash
 #
+# Title:      dockupdater
+# Author(s):  doob187
+# Upgrades:   eidanyosoy
+# URL:        https://sudobox.io/ - https://discord.gg/Ebh9rKQ5Ws
+# GNU:        General Public License v3.0
 ################################################################################
 ---
 - hosts: localhost
@@ -10,7 +15,6 @@
       set_fact:
         pgrole: 'dockup'
         image: 'dockupdater/dockupdater'
-
 
     - name: 'Setting {{pgrole}} Volumes'
       set_fact:
@@ -25,7 +29,7 @@
           PGID: '1000'
           CLEANUP: 'true'
           LOG_LEVEL: 'info'
-          INTERVAL: '720'
+          INTERVAL: '900'
           LABEL: 'true'
           WAIT: '180'
           NOTIFIERS: 'discord://webhook_id/webhook_token'
