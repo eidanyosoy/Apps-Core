@@ -33,6 +33,8 @@
           LABEL: 'true'
           WAIT: '180'
           NOTIFIERS: 'discord://webhook_id/webhook_token'
+          DISABLE_SERVICES_CHECK: 'true'
+          DISABLE_CONTAINERS_CHECK: 'true'
 
     # MAIN DEPLOYMENT #############################################################
     - name: 'Deploying {{pgrole}}'
