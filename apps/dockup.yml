@@ -11,8 +11,6 @@
         pgrole: 'dockup'
         image: 'dockupdater/dockupdater'
 
-    # CORE (MANDATORY) ############################################################
-    - name: 'Including cron job'
 
     # LABELS ######################################################################
     - name: 'Adding Traefik'
