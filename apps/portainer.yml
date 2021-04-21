@@ -18,7 +18,6 @@
       set_fact:
         pg_labels:
           traefik.enable: 'true'
-          traefik.frontend.auth.forward.address: '{{gauth}}'
           traefik.http.routers.portainer.entryPoints: 'secure'
           traefik.http.routers.portainer.rule: 'Host({{pgrole}}.{{domain.stdout}}{{tldset}}{{cname}})'
           traefik.http.routers.portainer.tls: 'true'
