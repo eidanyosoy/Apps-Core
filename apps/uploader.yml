@@ -47,6 +47,7 @@
           traefik.frontend.headers.customResponseHeaders: 'X-Robots-Tag:noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex'
           traefik.frontend.headers.forceSTSHeader: 'true'
           traefik.frontend.redirect.entryPoint: 'https'
+          dockupdater.enable: 'true'
 
     - name: 'Setting {{pgrole}} Volumes'
       set_fact:
